@@ -3,14 +3,13 @@ package com.labcorp.employee.domain;
 
 import java.util.UUID;
 
-public class ManagerEmployee extends AbstractEmployee implements Employee {
+public class ManagerEmployee extends SalariedEmployee implements Employee {
 
     public ManagerEmployee() {
         this(UUID.randomUUID().toString());
     }
     public ManagerEmployee(String id){
-        super(30);
-        setId(id);
+        super(id, 30);
     }
 
     @Override

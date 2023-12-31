@@ -10,7 +10,10 @@ public class SalariedEmployee extends AbstractEmployee implements Employee {
     }
 
     public SalariedEmployee(String id){
-        super(15);
+        this(id, 15);
+    }
+    protected SalariedEmployee(String id, int vacationDays){
+        super(vacationDays);
         setId(id);
     }
 
