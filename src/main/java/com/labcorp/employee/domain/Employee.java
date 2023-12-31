@@ -10,6 +10,21 @@ public interface Employee {
      */
     public String getId();
     /**
+     * Shows how many vacation days an employee has accrued
+     * @return
+     */
+    public float getAccruedVacationDays();
+    /**
+     * Shows how many full days employee has worked
+     * @return
+     */
+    public int getDaysWorked();
+    /**
+     * shows how many vacation days an employee has taken
+     * @return
+     */
+    public float getVacationDaysTaken();
+    /**
      * Takes parameter {@code days} and adds it to the total number of days worked also updateing accrued vacation days
      * @param days
      */

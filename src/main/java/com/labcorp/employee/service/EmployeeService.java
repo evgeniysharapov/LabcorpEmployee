@@ -38,4 +38,19 @@ public class EmployeeService {
         return employees.values().stream().toList();
     }
 
+    public Employee getEmployeeById(String id) {
+        return employees.get(id);
+    }
+
+    public Employee work(String id, int days) {
+        Employee employee = employees.get(id);
+        employee.work(days);
+        return employee;
+    }
+
+    public Employee vacation(String id, float days) {
+        Employee employee = employees.get(id);
+        employee.takeVacation(days);
+        return employee;
+    }
 }
