@@ -9,6 +9,8 @@ public abstract class AbstractEmployee {
     private float accruedVacationDays;
     private float vacationDaysTaken;
 
+    private String id;
+
     /**
      * Sets the number of vacation days an employee gets per year
      * @param annualVacationDays
@@ -61,4 +63,11 @@ public abstract class AbstractEmployee {
         return vacationDaysTaken;
     }
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 }

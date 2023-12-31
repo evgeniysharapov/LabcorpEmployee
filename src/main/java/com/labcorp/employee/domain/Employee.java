@@ -5,6 +5,11 @@ package com.labcorp.employee.domain;
  */
 public interface Employee {
     /**
+     * Id of the employee
+     * @return
+     */
+    public String getId();
+    /**
      * Takes parameter {@code days} and adds it to the total number of days worked also updateing accrued vacation days
      * @param days
      */

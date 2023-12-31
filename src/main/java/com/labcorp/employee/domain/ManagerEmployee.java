@@ -1,10 +1,16 @@
 package com.labcorp.employee.domain;
 
 
+import java.util.UUID;
+
 public class ManagerEmployee extends AbstractEmployee implements Employee {
 
-    public ManagerEmployee(){
+    public ManagerEmployee() {
+        this(UUID.randomUUID().toString());
+    }
+    public ManagerEmployee(String id){
         super(30);
+        setId(id);
     }
 
     @Override
