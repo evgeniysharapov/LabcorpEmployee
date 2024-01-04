@@ -43,3 +43,16 @@ Run tests with `mvn test`, you can also test the application by running the foll
 
     mvn verify
 
+## Implementation Notes
+
+There's a document 'Coding Test.docx' that describes the implementation details as required by the coding test. However, 
+based on the understanding of crafting a production ready code, I have made the following assumptions and changes:
+
+- using data classes for Employee and instead of using inheritance use `EmployeeType` enum to define the type of employee.
+- separation for Person and for Employee is deliberate and to illustrate how we store data pertaining to Persons separately from data pertaining to Employees. This may not be needed in the real life application, but many times we may need to break down our data classes on the lines of scope ( personal details, employment details, etc)
+- logic for vacation calculation and work days is moved to a separate class `VacationStrategy` out of `SalariedEmployee`, `HourlyEmployee`, etc classes
+- using `EmployeeType` enum to define the type of employee and use it to define the number of annual vacation cap. 
+- Employee data is stored in a `Map` in the `EmployeeDataStore` class. It's designed to be interfaced with as an actual data store. We can easily add DB connection capabilities with the minimum of changes scoped to that `EmployeeDataStore` class.
+
+This achieves flexibility for further changes and also makes the code more readable and maintainable as well as following separation of concerns - data are separated from logic/code.
+
