@@ -1,56 +1,47 @@
 package com.labcorp.employee.service;
 
-import com.labcorp.employee.domain.Employee;
-import com.labcorp.employee.domain.HourlyEmployee;
-import com.labcorp.employee.domain.ManagerEmployee;
-import com.labcorp.employee.domain.SalariedEmployee;
+import com.labcorp.employee.data.Employee;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Component
 public class EmployeeService {
 
-    private Map<String, Employee> employees;
+    @Autowired
+    private EmployeeDataStore employeeDataStore;
 
-    public EmployeeService() {
-        super();
-        int employeeId = 1;
-        employees = new HashMap<>();
-        for( int i = 0; i < 10; i++) {
-            String id = String.valueOf(employeeId++);
-            employees.put(id, new SalariedEmployee(id));
-        }
-        for( int i = 0; i < 10; i++) {
-            String id = String.valueOf(employeeId++);
-            employees.put(id, new HourlyEmployee(id));
-        }
-        for( int i = 0; i < 10; i++) {
-            String id = String.valueOf(employeeId++);
-            employees.put(id, new ManagerEmployee(id));
-        }
-    }
+    @Autowired
+    private VacationStrategy vacationStrategy;
 
     public List<Employee> getEmployees() {
-        return employees.values().stream().toList();
+        return employeeDataStore.finAll();
     }
 
     public Employee getEmployeeById(String id) {
-        return employees.get(id);
+        return employeeDataStore.findById(id);
     }
 
+    /**
+     * Takes parameter {@code days} and adds it to the total number of days worked also updating accrued vacation days
+     * @param days
+     */
     public Employee work(String id, int days) {
-        Employee employee = employees.get(id);
-        employee.work(days);
+        Employee employee = employeeDataStore.findById(id);
+        vacationStrategy.work(employee, days);
+
         return employee;
     }
 
-    public Employee vacation(String id, float days) {
-        Employee employee = employees.get(id);
-        employee.takeVacation(days);
+    /**
+     * Takes parameter {@code days}  of days on vacation and updates the total number of vacation days taken as well
+     * as the number of accrued vacation days
+     * @param days
+     */
+    public Employee takeVacation(String id, float days) {
+        Employee employee = employeeDataStore.findById(id);
+        vacationStrategy.takeVacation(employee, days);
         return employee;
     }
 }

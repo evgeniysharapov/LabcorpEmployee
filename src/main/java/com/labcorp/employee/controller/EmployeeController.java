@@ -1,6 +1,6 @@
 package com.labcorp.employee.controller;
 
-import com.labcorp.employee.domain.Employee;
+import com.labcorp.employee.data.Employee;
 import com.labcorp.employee.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -34,7 +34,7 @@ public class EmployeeController {
 
     @PutMapping("/employee/{id}/vacation/{days}")
     public Employee vacation(@PathVariable String id, @PathVariable float days) {
-        Employee employee = employeeService.vacation(id, days);
+        Employee employee = employeeService.takeVacation(id, days);
         return employee;
     }
 }
