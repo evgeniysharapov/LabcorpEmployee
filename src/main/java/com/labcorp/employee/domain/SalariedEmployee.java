@@ -3,7 +3,7 @@ package com.labcorp.employee.domain;
 
 import java.util.UUID;
 
-public class SalariedEmployee extends AbstractEmployee implements Employee {
+public class SalariedEmployee extends Employee {
 
     public SalariedEmployee(){
         this(UUID.randomUUID().toString());
@@ -15,15 +15,5 @@ public class SalariedEmployee extends AbstractEmployee implements Employee {
     protected SalariedEmployee(String id, int vacationDays){
         super(vacationDays);
         setId(id);
-    }
-
-    @Override
-    public void work(int days) {
-        addWork(days);
-    }
-
-    @Override
-    public void takeVacation(float days) {
-        removeVacation(days);
     }
 }
